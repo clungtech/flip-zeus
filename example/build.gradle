@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.example.flipzeus'
+    namespace 'com.github.app'
     compileSdk 33
     defaultConfig {
-        applicationId "com.github.flipzeus"
+        applicationId "com.github.app"
         minSdk 24
         targetSdk 33
         versionCode 1
