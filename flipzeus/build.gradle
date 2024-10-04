@@ -62,8 +62,6 @@ publishing {
             afterEvaluate {
                 from components.findByName("release")
             }
-//            from components.getByName("release")
-//            from components.release
             groupId publishedGroupId
             artifactId artifact
             version libraryVersion

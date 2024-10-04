@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'maven-publish'
 
 buildscript {
     repositories {
@@ -41,4 +42,74 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'flip-zeus'
+
+    publishedGroupId = 'com.github.flipzeus'
+    libraryName = 'FlipZeus'
+    artifact = 'flip-zeus'
+
+    libraryDescription = 'Flip an image all you want'
+
+    siteUrl = 'https://github.com/clungtech/flip-zeus'
+    gitUrl = 'https://github.com/clungtech/flip-zeus'
+
+    libraryVersion = '1.0.0'
+
+    developerId = ['clungtech']
+    developerName = ['Dheeraj Kumar']
+    developerEmail = ['clungtech@gmail.com']
+
+    licenseName = 'MIT'
+    licenseUrl = 'MIT'
+    allLicenses = ["MIT"]
+}
+// JitPack Configuration
+publishing {
+    publications {
+        maven(MavenPublication) {
+            afterEvaluate {
+                from components.findByName("release")
+            }
+            groupId publishedGroupId
+            artifactId artifact
+            version libraryVersion
+
+            pom {
+                name = libraryName
+                description = libraryDescription
+                url = siteUrl
+
+                licenses {
+                    license {
+                        name = licenseName
+                        url = licenseUrl
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = developerId[0]
+                        name = developerName[0]
+                        email = developerEmail[0]
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:${gitUrl}.git"
+                    developerConnection = "scm:git:${gitUrl}.git"
+                    url = gitUrl
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            // JitPack Repository
+            url = uri("https://jitpack.io")
+        }
+    }
 }
