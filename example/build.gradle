@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.example.flipzeus'
     compileSdk 33
     defaultConfig {
         applicationId "com.github.flipzeus"
